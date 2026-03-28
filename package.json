@@ -2,15 +2,19 @@
   "name": "chordially",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@8.15.6",
+  "packageManager": "pnpm@10.6.5",
   "scripts": {
-    "dev": "turbo run dev --parallel",
     "build": "turbo run build",
-    "lint": "turbo run lint",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "turbo run test",
-    "prisma": "pnpm --filter @chordially/api prisma"
+    "dev": "turbo run dev --parallel"
   },
   "devDependencies": {
-    "turbo": "^2.0.9"
+    "@eslint/js": "^9.23.0",
+    "eslint": "^9.23.0",
+    "globals": "^16.0.0",
+    "turbo": "^2.5.0",
+    "typescript": "^5.8.2"
   }
 }
