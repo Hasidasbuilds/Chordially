@@ -1,7 +1,8 @@
+import { env } from "./config/env.js";
 import { createApp } from "./app.js";
 
-const port = 3001;
+const app = createApp();
 
-createApp().listen(port, () => {
-  console.log(`API listening on port ${port}`);
+app.listen(env.PORT, () => {
+  console.log(`API listening on port ${env.PORT}`);
 });
