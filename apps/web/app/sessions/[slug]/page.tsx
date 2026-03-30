@@ -6,6 +6,8 @@ import { getSessionDetail } from "../../../lib/session-detail";
 import { getTipIntent } from "../../../lib/tip-intent";
 import { createTipIntent } from "./actions";
 
+const isDemoMode = process.env.DEMO_MODE === "true";
+
 export default function SessionDetailPage({
   params,
   searchParams
@@ -27,6 +29,11 @@ export default function SessionDetailPage({
       title={session.artistName}
       subtitle="A stable session detail contract with placeholder tipping UI and persisted draft intent state."
     >
+      {isDemoMode && (
+        <div style={{ background: "#2a1a00", border: "1px solid #f59e0b", borderRadius: "8px", padding: "0.6rem 1rem", marginBottom: "1rem", fontSize: "0.85rem", color: "#f59e0b" }}>
+          ⚠ Demo mode active — payments are simulated and not submitted to the network.
+        </div>
+      )}
       <div className="grid" style={{ gridTemplateColumns: "1.1fr 0.9fr" }}>
         <Card title={session.title}>
           <div>
@@ -55,11 +62,14 @@ export default function SessionDetailPage({
               <span>Message</span>
               <textarea className="textarea" defaultValue="For the encore." name="note" />
             </label>
-            <button className="button" type="submit">Create tip intent</button>
+            <button className="button" type="submit">
+              {isDemoMode ? "Simulate tip (demo)" : "Create tip intent"}
+            </button>
           </form>
           {searchParams.intent === "1" && showIntent ? (
             <p className="muted">
-              Draft intent created for {showIntent.amount} {showIntent.asset}. Payment execution is intentionally deferred.
+              {isDemoMode ? "Mock tip confirmed" : "Draft intent created"} for {showIntent.amount} {showIntent.asset}.
+              {isDemoMode ? " This is a demo record — no real transaction was submitted." : " Payment execution is intentionally deferred."}
             </p>
           ) : null}
         </Card>

@@ -18,6 +18,9 @@ export function AdminShell({
         <p className="copy">{subtitle}</p>
         <nav className="nav">
           <Link className="button" href="/admin">Overview</Link>
+          <Link className="button button--secondary" href="/admin/bellabuks/sessions">Sessions</Link>
+          <Link className="button button--secondary" href="/admin/bellabuks/users">Users</Link>
+          <Link className="button button--secondary" href="/admin/bellabuks/audit">Audit trail</Link>
           <Link className="button button--secondary" href="/admin/login">Switch admin</Link>
         </nav>
       </section>
