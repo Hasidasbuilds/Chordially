@@ -12,6 +12,7 @@ async function bootstrap() {
   const adapter = new ExpressAdapter(expressApp);
   
   const app = await NestFactory.create(AppModule, adapter);
+  app.setGlobalPrefix('api');
   
   await app.listen(env.PORT, () => {
     logger.info(`NestJS API listening on port ${env.PORT}`);
